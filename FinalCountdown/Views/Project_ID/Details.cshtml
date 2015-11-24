@@ -1,0 +1,50 @@
+﻿@model FinalCountdown.Models.Project_ID
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Project_ID</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NameoFProject)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameoFProject)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescriptionOfProject)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescriptionOfProject)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LinktoGithub)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LinktoGithub)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ScreenshotsOfProject.ScreenshotsOfProject1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ScreenshotsOfProject.ScreenshotsOfProject1)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProjectId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

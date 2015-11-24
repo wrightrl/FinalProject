@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Raquels_FinalEntities">
+    <EntitySetMapping Name="Project_IDs">
+      <EntityTypeMapping TypeName="Model.Project_ID">
+        <MappingFragment StoreEntitySet="Project ID">
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="NameoFProject" ColumnName="NameoFProject" />
+          <ScalarProperty Name="DescriptionOfProject" ColumnName="DescriptionOfProject" />
+          <ScalarProperty Name="LinktoGithub" ColumnName="LinktoGithub" />
+          <ScalarProperty Name="ScreenshotID" ColumnName="ScreenshotID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ScreenshotsOfProjects">
+      <EntityTypeMapping TypeName="Model.ScreenshotsOfProject">
+        <MappingFragment StoreEntitySet="ScreenshotsOfProject">
+          <ScalarProperty Name="ScreenshotID" ColumnName="ScreenshotID" />
+          <ScalarProperty Name="ScreenshotsOfProject1" ColumnName="ScreenshotsOfProject" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

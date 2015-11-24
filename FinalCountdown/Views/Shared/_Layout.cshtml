@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale1.0" >
+    <title>@ViewBag.Title - Raquel Wright</title>
+
+    <link href="~/Content/Site.css"rel="stylesheet" type="text/css"/>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet"type="text/css"/>
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <script src="~/Scripts/jquery-2.1.4.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
+    
+<head>
+   
+    <style>
+        #Raquel {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        h1 {
+            font-family: 'Tangerine', serif;
+            font-size: 48px;
+        }
+
+        home {
+            font-family: 'Tangerine', serif;
+            font-size: 48px;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            display: inline;
+            font-size: 60px;
+            font-family: 'Tangerine',serif;
+            margin-right: auto;
+        }
+
+        .black {
+            color: black;
+        }
+    </style>
+
+   </head> 
+
+    <body>
+        <img src="~/Content/Images/raquel_name_handwritten11.png" id="Raquel" style="height:200px;" />
+
+        <div style="text-align:center; font-family: 'Tangerine',serif; font-size: 30px; ">
+            @Html.ActionLink("Home", "Index", "Home")
+            @Html.ActionLink("About", "About", "Home")
+            @Html.ActionLink("Contact", "Contact", "Home")
+            @Html.ActionLink("Project", "Project", "Home")
+
+        </div>
+
+
+
+
+
+
+        @RenderBody()
+        <p>&copy; @DateTime.Now.Year - My FINAL PROJECT</p>
+
+    </body>
+ 

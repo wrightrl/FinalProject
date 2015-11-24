@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Project ID">
+          <Key>
+            <PropertyRef Name="ProjectId" />
+          </Key>
+          <Property Name="ProjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameoFProject" Type="nvarchar" MaxLength="50" />
+          <Property Name="DescriptionOfProject" Type="nvarchar" MaxLength="50" />
+          <Property Name="LinktoGithub" Type="nchar" MaxLength="10" />
+          <Property Name="ScreenshotID" Type="int" />
+        </EntityType>
+        <EntityType Name="ScreenshotsOfProject">
+          <Key>
+            <PropertyRef Name="ScreenshotID" />
+          </Key>
+          <Property Name="ScreenshotID" Type="int" Nullable="false" />
+          <Property Name="ScreenshotsOfProject" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Project ID_ScreenshotsOfProject">
+          <End Role="ScreenshotsOfProject" Type="Self.ScreenshotsOfProject" Multiplicity="0..1" />
+          <End Role="Project ID" Type="Self.Project ID" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScreenshotsOfProject">
+              <PropertyRef Name="ScreenshotID" />
+            </Principal>
+            <Dependent Role="Project ID">
+              <PropertyRef Name="ScreenshotID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Project ID" EntityType="Self.Project ID" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScreenshotsOfProject" EntityType="Self.ScreenshotsOfProject" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Project ID_ScreenshotsOfProject" Association="Self.FK_Project ID_ScreenshotsOfProject">
+            <End Role="ScreenshotsOfProject" EntitySet="ScreenshotsOfProject" />
+            <End Role="Project ID" EntitySet="Project ID" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Project_ID">
+          <Key>
+            <PropertyRef Name="ProjectId" />
+          </Key>
+          <Property Name="ProjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameoFProject" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DescriptionOfProject" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LinktoGithub" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ScreenshotID" Type="Int32" />
+          <NavigationProperty Name="ScreenshotsOfProject" Relationship="Self.FK_Project_ID_ScreenshotsOfProject" FromRole="Project_ID" ToRole="ScreenshotsOfProject" />
+        </EntityType>
+        <EntityType Name="ScreenshotsOfProject">
+          <Key>
+            <PropertyRef Name="ScreenshotID" />
+          </Key>
+          <Property Name="ScreenshotID" Type="Int32" Nullable="false" />
+          <Property Name="ScreenshotsOfProject1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Project_ID" Relationship="Self.FK_Project_ID_ScreenshotsOfProject" FromRole="ScreenshotsOfProject" ToRole="Project_ID" />
+        </EntityType>
+        <Association Name="FK_Project_ID_ScreenshotsOfProject">
+          <End Role="ScreenshotsOfProject" Type="Self.ScreenshotsOfProject" Multiplicity="0..1" />
+          <End Role="Project_ID" Type="Self.Project_ID" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScreenshotsOfProject">
+              <PropertyRef Name="ScreenshotID" />
+            </Principal>
+            <Dependent Role="Project_ID">
+              <PropertyRef Name="ScreenshotID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Raquels_FinalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Project_IDs" EntityType="Self.Project_ID" />
+          <EntitySet Name="ScreenshotsOfProjects" EntityType="Self.ScreenshotsOfProject" />
+          <AssociationSet Name="FK_Project_ID_ScreenshotsOfProject" Association="Self.FK_Project_ID_ScreenshotsOfProject">
+            <End Role="ScreenshotsOfProject" EntitySet="ScreenshotsOfProjects" />
+            <End Role="Project_ID" EntitySet="Project_IDs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Raquels_FinalEntities">
+          <EntitySetMapping Name="Project_IDs">
+            <EntityTypeMapping TypeName="Model.Project_ID">
+              <MappingFragment StoreEntitySet="Project ID">
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="NameoFProject" ColumnName="NameoFProject" />
+                <ScalarProperty Name="DescriptionOfProject" ColumnName="DescriptionOfProject" />
+                <ScalarProperty Name="LinktoGithub" ColumnName="LinktoGithub" />
+                <ScalarProperty Name="ScreenshotID" ColumnName="ScreenshotID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScreenshotsOfProjects">
+            <EntityTypeMapping TypeName="Model.ScreenshotsOfProject">
+              <MappingFragment StoreEntitySet="ScreenshotsOfProject">
+                <ScalarProperty Name="ScreenshotID" ColumnName="ScreenshotID" />
+                <ScalarProperty Name="ScreenshotsOfProject1" ColumnName="ScreenshotsOfProject" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

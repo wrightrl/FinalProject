@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Project_ID">
+    <Key>
+      <PropertyRef Name="ProjectId" />
+    </Key>
+    <Property Name="ProjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameoFProject" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DescriptionOfProject" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LinktoGithub" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="ScreenshotID" Type="Int32" />
+    <NavigationProperty Name="ScreenshotsOfProject" Relationship="Self.FK_Project_ID_ScreenshotsOfProject" FromRole="Project_ID" ToRole="ScreenshotsOfProject" />
+  </EntityType>
+  <EntityType Name="ScreenshotsOfProject">
+    <Key>
+      <PropertyRef Name="ScreenshotID" />
+    </Key>
+    <Property Name="ScreenshotID" Type="Int32" Nullable="false" />
+    <Property Name="ScreenshotsOfProject1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Project_ID" Relationship="Self.FK_Project_ID_ScreenshotsOfProject" FromRole="ScreenshotsOfProject" ToRole="Project_ID" />
+  </EntityType>
+  <Association Name="FK_Project_ID_ScreenshotsOfProject">
+    <End Role="ScreenshotsOfProject" Type="Self.ScreenshotsOfProject" Multiplicity="0..1" />
+    <End Role="Project_ID" Type="Self.Project_ID" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ScreenshotsOfProject">
+        <PropertyRef Name="ScreenshotID" />
+      </Principal>
+      <Dependent Role="Project_ID">
+        <PropertyRef Name="ScreenshotID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Raquels_FinalEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Project_IDs" EntityType="Self.Project_ID" />
+    <EntitySet Name="ScreenshotsOfProjects" EntityType="Self.ScreenshotsOfProject" />
+    <AssociationSet Name="FK_Project_ID_ScreenshotsOfProject" Association="Self.FK_Project_ID_ScreenshotsOfProject">
+      <End Role="ScreenshotsOfProject" EntitySet="ScreenshotsOfProjects" />
+      <End Role="Project_ID" EntitySet="Project_IDs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
